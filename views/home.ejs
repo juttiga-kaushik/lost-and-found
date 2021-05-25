@@ -1,65 +1,58 @@
 <head>
-<style>
-table, th, td {
-  border: 1px solid black;
-  border-collapse: collapse;
-}
-th, td {
-  padding: 15px;
-}
-a {
-    text-decoration: none;
-    color: black;
-}
-</style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 </head>
-<h1>Hello <%=userInfo.fullname%></h1>
-
-<button><a href="/users/logout">Logout</a></button>
-
-<button><a href="/users/<%=userInfo.id%>">Profile</a></button>
-
-<p>If you lost any item, Fill the below form.</p>
-
-<form action="/items/lost" enctype="multipart/form-data" method="post">
-    <label for="itemName">Item name:</label>
-    <input type="text" name="itemName" id="itemName" required><br>
-    <label for="itemDescription">Item description:</label>
-    <input type="text" name="itemDescription" id="itemDescription" required><br>
-    <label for="itemReward">Item reward:</label>
-    <input type="number" name="itemReward" id="itemReward" required><br>
-    <label for="image">Item image(Optional): </label>
-    <input type="file" name="image" id="image"><br>
-    <input type="submit" value="Submit">
-</form>
-
-<h2>Lost items list</h2>
-
-<p>If you found your item, delete the item.</p>
-
-<% if(userItems.length == 0) { %>
-    <p>### No items are present ###</p>
-<% } %>
-
-<ul>
-<% userItems.forEach((item) => { %>
-    <li><%= item.itemName %> <button><a href="/items/delete/<%= item.id %>">Delete</a></button></li>
-<% }); %>
-</ul>
-
-<h2>Lost items table</h2>
-<table>
-    <tr>
-        <th>Item name</th>
-        <th>Item description</th>
-        <th>Item reward</th>
-    </tr>
-    <% items.forEach((item) => { %>
-        <tr>
-            <td><%= item.itemName %></td>
-            <td><%= item.itemDescription %></td>
-            <td><%= item.itemReward %> ₹</td>
-            <td><button><a href="/items/<%= item.id %>">View</a></button></td>
-        </tr>
+<div class="container">
+    <h1 style="text-align: center;">Lost&Found</h1><br>
+    <h2>Hello <%=userInfo.fullname%></h2>
+    <a class="btn btn-primary" href="/users/logout" role="button">Logout</a>
+    <a class="btn btn-primary" href="/users/<%= userInfo.id %>" role="button">Profile</a>
+    <p style="text-align: center;">If you lost any item, Fill the below form.</p>
+    <form action="/items/lost" enctype="multipart/form-data" method="post">
+        <div class="mb-3">
+            <label for="itemName" class="form-label">Item name</label>
+            <input type="text" class="form-control" id="itemName" name="itemName" required>
+        </div>
+        <div class="mb-3">
+            <label for="itemDescription" class="form-label">Item description</label>
+            <input type="text" class="form-control" id="itemDescription" name="itemDescription" required>
+        </div>
+        <div class="mb-3">
+            <label for="itemReward" class="form-label">Item reward</label>
+            <input type="number" class="form-control" min="0" id="itemReward" name="itemReward" required>
+        </div>
+        <div class="mb-3">
+            <label for="image" class="form-label">Item image (Optional)</label>
+            <input type="file" class="form-control" id="image" name="image" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Lost</button>
+    </form>
+    <p>If you found your lost item, delete the item to remove from lost items table.</p>
+    <% if(userItems.length == 0) { %>
+        <p>### No items are present ###</p>
+    <% } %>
+    <ul>
+    <% userItems.forEach((item) => { %>
+        <li><%= item.itemName %> <a class="btn btn-primary btn-sm" href="/items/delete/<%= item.id %>" role="button">Delete</a></li>
     <% }); %>
-</table>
+    </ul>
+    <h2>Lost items table</h2>
+    <table class="table table-striped">
+        <tr>
+            <th>Item name</th>
+            <th>Item description</th>
+            <th>Item reward</th>
+            <th>View</th>
+        </tr>
+        <% items.forEach((item) => { %>
+            <tr>
+                <td><%= item.itemName %></td>
+                <td><%= item.itemDescription %></td>
+                <td><%= item.itemReward %> ₹</td>
+                <td><a class="btn btn-primary btn-sm" href="/items/<%= item.id %>" role="button">View</a></td>
+            </tr>
+        <% }); %>
+    </table>
+    <div class="col-md-12 text-center">
+        <p>Lost&Found Made By Kaushik Juttiga From BoltWebCompany</p>
+    </div>
+</div>

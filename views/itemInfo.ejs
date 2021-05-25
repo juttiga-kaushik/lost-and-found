@@ -1,23 +1,24 @@
 <head>
-<style>
-a {
-    text-decoration: none;
-    color: black;
-}
-</style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 </head>
-<h1>Item info</h1>
-<h3>Name: <%=item.itemName%></h3>
-<h3>Description: <%=item.itemDescription%></h3>
-<h3>Reward: <%=item.itemReward%> ₹</h3>
-<% if(item.itemImage == "none") { %>
-    <h3>Image: none</h3>
-<% } else { %>
-    <h3>Image: </h3><img src="<%=item.itemImage%>" alt="Lost item image" width="300" height="300">
-<% } %>
-<h1>Item owner info</h1>
-<h3>Fullname: <%=user.fullname%></h3>
-<h3>Email id: <%=user.email%></h3>
-<h3>Contact number: <%=user.contactNumber%></h3>
-<h3>Note: If you found this item, contact the owner.</h3>
-<button><a href="/home">Home</a></button>
+<div class="container">
+    <h1 style="text-align: center;">Lost&Found</h1>
+    <h2>Item info</h2>
+    <h5>Name: <%=item.itemName%></h3>
+    <h5>Description: <%=item.itemDescription%></h3>
+    <h5>Reward: <%=item.itemReward%> ₹</h3>
+    <% if(item.itemImage == "none") { %>
+        <h5>Image: none</h5>
+    <% } else { %>
+        <h5>Image: </h5><img src="<%=item.itemImage%>" alt="Lost item image" width="300" height="300">
+    <% } %>
+    <h2>Item owner info</h1>
+    <h5>Fullname: <%=user.fullname%></h3>
+    <h5>Email id: <%=user.email%></h3>
+    <h5>Contact number: <%=user.contactNumber%></h3>
+    <h5>Note: If you found this item, contact the owner.</h3>
+    <a class="btn btn-primary btn-sm" href="/home" role="button">Home</a>
+    <div class="col-md-12 text-center">
+        <p>Lost&Found Made By Kaushik Juttiga From BoltWebCompany</p>
+    </div>
+</div>
