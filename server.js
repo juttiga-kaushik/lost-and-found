@@ -10,6 +10,8 @@ const usersRouter = require("./routes/usersRouter");
 const homeRouter = require("./routes/homeRouter");
 const itemsRouter = require("./routes/itemsRouter");
 
+const PORT = process.env.PORT || 80;
+
 mongoose.connect(process.env.MONGO_URI, {useUnifiedTopology:true,useNewUrlParser:true});
 const db = mongoose.connection;
 db.on("error", (error) => console.error(error));
@@ -27,4 +29,4 @@ app.use("/users",usersRouter);
 app.use("/home",homeRouter);
 app.use("/items",itemsRouter);
 
-app.listen(3000, () => console.log("Server running on port 3000"));
+app.listen(PORT, () => console.log("Server running on port 3000"));
