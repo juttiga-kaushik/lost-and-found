@@ -1,0 +1,22 @@
+{
+  "name": "lostandfound",
+  "version": "1.0.0",
+  "description": "Lost and found is a website where people can retrieve lost articles that may have been found by others",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "kaushik juttiga",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "cloudinary": "^1.25.1",
+    "dotenv": "^8.2.0",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
+    "express-session": "^1.17.1",
+    "mongoose": "^5.11.12"
+  }
+}

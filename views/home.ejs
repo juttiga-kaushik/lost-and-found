@@ -1,0 +1,65 @@
+<head>
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 15px;
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+</style>
+</head>
+<h1>Hello <%=userInfo.fullname%></h1>
+
+<button><a href="/users/logout">Logout</a></button>
+
+<button><a href="/users/<%=userInfo.id%>">Profile</a></button>
+
+<p>If you lost any item, Fill the below form.</p>
+
+<form action="/items/lost" enctype="multipart/form-data" method="post">
+    <label for="itemName">Item name:</label>
+    <input type="text" name="itemName" id="itemName" required><br>
+    <label for="itemDescription">Item description:</label>
+    <input type="text" name="itemDescription" id="itemDescription" required><br>
+    <label for="itemReward">Item reward:</label>
+    <input type="number" name="itemReward" id="itemReward" required><br>
+    <label for="image">Item image(Optional): </label>
+    <input type="file" name="image" id="image"><br>
+    <input type="submit" value="Submit">
+</form>
+
+<h2>Lost items list</h2>
+
+<p>If you found your item, delete the item.</p>
+
+<% if(userItems.length == 0) { %>
+    <p>### No items are present ###</p>
+<% } %>
+
+<ul>
+<% userItems.forEach((item) => { %>
+    <li><%= item.itemName %> <button><a href="/items/delete/<%= item.id %>">Delete</a></button></li>
+<% }); %>
+</ul>
+
+<h2>Lost items table</h2>
+<table>
+    <tr>
+        <th>Item name</th>
+        <th>Item description</th>
+        <th>Item reward</th>
+    </tr>
+    <% items.forEach((item) => { %>
+        <tr>
+            <td><%= item.itemName %></td>
+            <td><%= item.itemDescription %></td>
+            <td><%= item.itemReward %> ₹</td>
+            <td><button><a href="/items/<%= item.id %>">View</a></button></td>
+        </tr>
+    <% }); %>
+</table>

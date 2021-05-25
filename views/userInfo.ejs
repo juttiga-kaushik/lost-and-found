@@ -1,0 +1,32 @@
+<head>
+<style>
+a {
+    text-decoration: none;
+    color: black;
+}
+</style>
+</head>
+
+<h1>User info</h1>
+<h3>Fullname: <%=user.fullname%></h3>
+<h3>Email id: <%=user.email%></h3>
+<h3>Contact number: <%=user.contactNumber%></h3>
+<button><a href="/home">Home</a></button>
+
+<h1>Edit contact number</h1>
+<form action="/users/edit" method="POST">
+    <label for="contactNumber">Contact number:</label>
+    <input type="text" name="contactNumber" required><br>
+    <input type="submit" value="Edit">
+</form>
+
+<h1>Edit password</h1>
+<form action="/users/edit" method="POST">
+    <label for="oldPassword">Old password:</label>
+    <input type="password" name="oldPassword" required><br>
+    <label for="newPassword">New password:</label>
+    <input type="password" name="newPassword" required><br>
+    <label for="confirmNewPassword">Confirm new password:</label>
+    <input type="password" name="confirmNewPassword" required><br>
+    <input type="submit" value="Edit">
+</form>

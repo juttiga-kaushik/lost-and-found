@@ -1,0 +1,23 @@
+<head>
+<style>
+a {
+    text-decoration: none;
+    color: black;
+}
+</style>
+</head>
+<h1>Item info</h1>
+<h3>Name: <%=item.itemName%></h3>
+<h3>Description: <%=item.itemDescription%></h3>
+<h3>Reward: <%=item.itemReward%> ₹</h3>
+<% if(item.itemImage == "none") { %>
+    <h3>Image: none</h3>
+<% } else { %>
+    <h3>Image: </h3><img src="<%=item.itemImage%>" alt="Lost item image" width="300" height="300">
+<% } %>
+<h1>Item owner info</h1>
+<h3>Fullname: <%=user.fullname%></h3>
+<h3>Email id: <%=user.email%></h3>
+<h3>Contact number: <%=user.contactNumber%></h3>
+<h3>Note: If you found this item, contact the owner.</h3>
+<button><a href="/home">Home</a></button>
