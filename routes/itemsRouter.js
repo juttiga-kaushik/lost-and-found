@@ -11,7 +11,7 @@ router.post("/lost", async (req,res) => {
         return;
     }
     try {
-        const { itemName, itemDescription, itemReward } = req.body;
+        const { itemName, itemDescription, itemReward, university } = req.body;
         var imageUrl = "";
         var imagePublicId = "";
         if(req.files != null) {
@@ -34,7 +34,8 @@ router.post("/lost", async (req,res) => {
             itemDescription: itemDescription,
             itemReward: itemReward,
             itemImage: imageUrl,
-            cloudinaryId: imagePublicId
+            cloudinaryId: imagePublicId,
+            university: university
         });
         await newItem.save();
         res.redirect("/home");

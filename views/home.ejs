@@ -1,15 +1,17 @@
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <div class="container">
-    <h1 style="text-align: center;">Lost&Found</h1><br>
-    <h2>Hello <%=userInfo.fullname%></h2>
+    <h1 style="text-align: center;">Lost&Found - <%= userInfo.university %></h1><br>
+    <h2>Hello <%= userInfo.fullname %></h2>
     <a class="btn btn-primary" href="/users/logout" role="button">Logout</a>
     <a class="btn btn-primary" href="/users/<%= userInfo.id %>" role="button">Profile</a>
+    <hr style="border: 3px solid; border-radius: 5px;">
     <p style="text-align: center;">If you lost any item, Fill the below form.</p>
-    <form action="/items/lost" enctype="multipart/form-data" method="post">
+    <form action="/items/lost" id="lost_item_form" enctype="multipart/form-data" method="post">
         <div class="mb-3">
             <label for="itemName" class="form-label">Item name</label>
             <input type="text" class="form-control" id="itemName" name="itemName" required>
@@ -24,10 +26,12 @@
         </div>
         <div class="mb-3">
             <label for="image" class="form-label">Item image (Optional)</label>
-            <input type="file" class="form-control" id="image" name="image" required>
+            <input type="file" class="form-control" id="image" name="image">
         </div>
-        <button type="submit" class="btn btn-primary">Lost</button>
+        <input type="hidden" name="university" value="<%= userInfo.university %>">
+        <button type="submit" class="btn btn-primary" id="lost_submit_button">Lost</button>
     </form>
+    <hr style="border: 3px solid; border-radius: 5px;">
     <p>If you found your lost item, delete the item to remove from lost items table.</p>
     <% if(userItems.length == 0) { %>
         <p>### No items are present ###</p>
@@ -37,6 +41,7 @@
         <li><%= item.itemName %> <a class="btn btn-primary btn-sm" href="/items/delete/<%= item.id %>" role="button">Delete</a></li>
     <% }); %>
     </ul>
+    <hr style="border: 3px solid; border-radius: 5px;">
     <h2>Lost items table</h2>
     <table class="table table-striped">
         <tr>
@@ -54,7 +59,4 @@
             </tr>
         <% }); %>
     </table>
-    <div class="col-md-12 text-center">
-        <p>Lost&Found Made By Kaushik Juttiga From BoltWebCompany</p>
-    </div>
 </div>

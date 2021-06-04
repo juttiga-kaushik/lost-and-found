@@ -9,7 +9,7 @@ router.get("/register", (req, res) => {
 });
 
 router.post("/register", async (req, res) => {
-    const {fullname, email, password, confirmPassword, contactNumber} = req.body;
+    const {fullname, email, password, confirmPassword, contactNumber, university} = req.body;
     if(password.length < 6) {
         res.send("Your password is less than 6 characters long");
         return;
@@ -25,7 +25,7 @@ router.post("/register", async (req, res) => {
             return;
         }
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
-        const newUser = new userModel({fullname: fullname, email: email, password: hashedPassword, contactNumber: contactNumber});
+        const newUser = new userModel({fullname: fullname, email: email, password: hashedPassword, contactNumber: contactNumber, university: university});
         await newUser.save();
         res.send("User created successfully. <a href='/users/login'>Login</a>");
     }

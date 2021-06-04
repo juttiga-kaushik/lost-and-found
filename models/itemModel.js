@@ -24,6 +24,10 @@ const itemSchema = new mongoose.Schema({
     cloudinaryId: {
         type: String,
         required: true
+    },
+    university: {
+        type: String,
+        required: true
     }
 });
 

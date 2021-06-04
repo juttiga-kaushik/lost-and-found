@@ -4,12 +4,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <div class="container">
-    <h1 style="text-align: center;">Lost&Found</h1>
+    <h1 style="text-align: center;">Lost&Found - <%= user.university %></h1>
     <h2>User info</h2>
-    <h5>Fullname: <%=user.fullname%></h3>
-    <h5>Email id: <%=user.email%></h3>
-    <h5>Contact number: <%=user.contactNumber%></h3>
+    <h5>Fullname: <%= user.fullname %></h5>
+    <h5>Email id: <%= user.email %></h5>
+    <h5>Contact number: <%= user.contactNumber %></h5>
     <a class="btn btn-primary btn-sm" href="/home" role="button">Home</a>
+    <hr style="border: 3px solid; border-radius: 5px;">
     <h2>Edit contact number</h2>
     <form action="/users/edit" method="post">
         <div class="mb-3">
@@ -18,6 +19,7 @@
         </div>
         <button type="submit" class="btn btn-primary">Edit</button>
     </form>
+    <hr style="border: 3px solid; border-radius: 5px;">
     <h2>Edit password</h2>
     <form action="/users/edit" method="post">
         <div class="mb-3">
@@ -25,7 +27,7 @@
             <input type="password" class="form-control" id="oldPassword" name="oldPassword" required>
         </div>
         <div class="mb-3">
-            <label for="newPassword" class="form-label">Contact number</label>
+            <label for="newPassword" class="form-label">New password</label>
             <input type="password" class="form-control" id="newPassword" name="newPassword" required>
         </div>
         <div class="mb-3">
@@ -34,8 +36,5 @@
         </div>
         <button type="submit" class="btn btn-primary">Edit</button>
     </form>
-    <div class="col-md-12 text-center">
-        <p>Lost&Found Made By Kaushik Juttiga From BoltWebCompany</p>
-    </div>
 </div>
 

@@ -29,4 +29,4 @@ app.use("/users",usersRouter);
 app.use("/home",homeRouter);
 app.use("/items",itemsRouter);
 
-app.listen(PORT, () => console.log("Server running on port 3000"));
+app.listen(PORT, () => console.log("Server running on port 80"));

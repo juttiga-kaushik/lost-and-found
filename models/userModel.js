@@ -16,6 +16,10 @@ const userSchema = new mongoose.Schema({
     contactNumber: {
         type: String,
         required: true
+    },
+    university: {
+        type: String,
+        required: true
     }
 });
 
