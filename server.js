@@ -9,6 +9,7 @@ const fileUpload = require("express-fileupload");
 const usersRouter = require("./routes/usersRouter");
 const homeRouter = require("./routes/homeRouter");
 const itemsRouter = require("./routes/itemsRouter");
+const historyRouter = require("./routes/historyRouter");
 
 const PORT = process.env.PORT || 80;
 
@@ -28,5 +29,6 @@ app.use(fileUpload({
 app.use("/users",usersRouter);
 app.use("/home",homeRouter);
 app.use("/items",itemsRouter);
+app.use("/history",historyRouter);
 
 app.listen(PORT, () => console.log("Server running on port 80"));

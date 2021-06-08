@@ -30,7 +30,7 @@ router.post("/register", async (req, res) => {
         res.send("User created successfully. <a href='/users/login'>Login</a>");
     }
     catch(err) {
-        res.send(err);
+        res.status(500).send("Error in creating an account");
     }
 });
 
@@ -58,7 +58,7 @@ router.post("/login", async (req, res) => {
         }
     }
     catch(err) {
-        res.send(err);
+        res.status(500).send("Error in verifying your account");
     }
 });
 
@@ -78,7 +78,7 @@ router.get("/:userId", async (req, res) => {
         res.render("userInfo", {user:user});
     }
     catch(err) {
-        res.send(err);
+        res.status(500).send("Error in fetching the data");
     }
 });
 
@@ -120,7 +120,7 @@ router.post("/edit", async (req,res) => {
         return;
     }
     catch(err) {
-        res.send(err);
+        res.status(500).send("Error in editing the data");
     }
 });
 

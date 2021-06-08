@@ -4,6 +4,8 @@ const cloudinary = require("../cloudinary");
 const fs = require("fs");
 const itemModel = require("../models/itemModel");
 const userModel = require("../models/userModel");
+const itemHistorySchema = require("../models/itemHistoryModel");
+const itemHistoryModel = require("../models/itemHistoryModel");
 
 router.post("/lost", async (req,res) => {
     if(!req.session.userId) {
@@ -37,11 +39,19 @@ router.post("/lost", async (req,res) => {
             cloudinaryId: imagePublicId,
             university: university
         });
+        const newItemHistory = new itemHistoryModel({
+            userId: req.session.userId, 
+            itemName: itemName, 
+            itemDescription: itemDescription, 
+            itemReward: itemReward,
+            university: university
+        });
         await newItem.save();
+        await newItemHistory.save();
         res.redirect("/home");
     }
     catch(err) {
-        console.log(err);
+        res.status(500).send("Error in uploading the data");
     }
 });
 
@@ -56,7 +66,7 @@ router.get("/:itemId", async (req,res) => {
         res.render("itemInfo",{item:item,user:user});
     }
     catch(err) {
-        res.send(err);
+        res.status(500).send("Error in fetching the data");
     }
 });
 
@@ -74,7 +84,7 @@ router.get("/delete/:itemId", async (req,res) => {
         res.redirect("/home");
     }
     catch(err) {
-        res.send(err);
+        res.status(500).send("Error in deleting the data");
     }
 });
 

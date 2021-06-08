@@ -15,7 +15,7 @@ router.get("/", async (req,res) => {
         res.render("home",{userInfo:userInfo, items:items, userItems:userItems});
     }
     catch(err) {
-        res.send(err);
+        res.status(500).send("Unable to fetch the data");
     }
 });
 
