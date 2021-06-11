@@ -4,13 +4,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <div class="container">
-    <h1 style="text-align: center;">Lost&Found - <%= user.university %></h1>
     <h2>User info</h2>
     <h5>Fullname: <%= user.fullname %></h5>
     <h5>Email id: <%= user.email %></h5>
     <h5>Contact number: <%= user.contactNumber %></h5>
     <a class="btn btn-primary btn-sm" href="/home" role="button">Home</a>
-    <a class="btn btn-primary btn-sm" href="/history/">Lost items history</a>
+    <a class="btn btn-primary btn-sm" href="/messages/" role="button">Messages</a>
+    <a class="btn btn-primary btn-sm" href="/history/" role="button">Lost items history</a>
     <hr style="border: 3px solid; border-radius: 5px;">
     <h2>Edit contact number</h2>
     <form action="/users/edit" method="post">

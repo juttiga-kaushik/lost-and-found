@@ -5,19 +5,15 @@ const itemHistorySchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    itemId: {
+        type: String,
+        required: true
+    },
     itemName: {
         type: String,
         required: true
     },
-    itemDescription: {
-        type: String,
-        required: true
-    },
-    itemReward: {
-        type: Number,
-        required: true
-    },
-    university: {
+    itemFoundBy: {
         type: String,
         required: true
     }

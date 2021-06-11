@@ -1,21 +1,26 @@
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <div class="container">
-    <h2>Lost items history</h2>
+    <h2>Messages</h2>
     <a class="btn btn-primary btn-sm" href="/home" role="button">Home</a>
     <table class="table table-striped">
         <tr>
             <th>Item name</th>
             <th>Item found by</th>
+            <th>Contact number</th>
+            <th>Confirm</th>
+            <th>Reject</th>
         </tr>
-        <% items.forEach((item) => { %>
+        <% messages.forEach((message) => { %>
             <tr>
-                <td><%= item.itemName %></td>
-                <td><%= item.itemFoundBy %></td>
+                <td><%= message.itemName %></td>
+                <td><%= message.itemFoundUserName %></td>
+                <td><%= message.itemFoundUserContact %></td>
+                <td><a class="btn btn-primary btn-sm" href="/status/confirm/<%= message.id %>/<%= message.itemId %>" role="button">Confirm</a></td>
+                <td><a class="btn btn-primary btn-sm" href="/status/reject/<%= message.id %>" role="button">Reject</a></td>
             </tr>
         <% }); %>
     </table>

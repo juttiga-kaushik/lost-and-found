@@ -4,21 +4,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <div class="container">
-    <h1 style="text-align: center;">Lost&Found - <%= item.university %></h1>
     <h2>Item info</h2>
-    <h5>Name: <%=item.itemName%></h3>
-    <h5>Description: <%=item.itemDescription%></h3>
-    <h5>Reward: <%=item.itemReward%> ₹</h3>
+    <h5>Name: <%=item.itemName%></h5>
+    <h5>Description: <%=item.itemDescription%></h5>
+    <h5>Reward: <%=item.itemReward%> ₹</h5>
     <% if(item.itemImage == "none") { %>
         <h5>Image: none</h5>
     <% } else { %>
         <h5>Image: </h5><img src="<%=item.itemImage%>" alt="Lost item image" width="300" height="300">
     <% } %>
     <hr style="border: 3px solid; border-radius: 5px;">
-    <h2>Item owner info</h1>
-    <h5>Fullname: <%=user.fullname%></h3>
-    <h5>Email id: <%=user.email%></h3>
-    <h5>Contact number: <%=user.contactNumber%></h3>
-    <h5>Note: If you found this item, contact the owner.</h3>
+    <h2>Item owner info</h2>
+    <h5>Fullname: <%=user.fullname%></h5>
+    <h5>Email id: <%=user.email%></h5>
+    <h5>Contact number: <%=user.contactNumber%></h5>
+    <% if(item.userId != loggedInUserId) { %>
+        <h5>Found the item ? <a class="btn btn-primary btn-sm" href="/status/<%= item.id %>/">Found</a></h5>
+    <% } %>
     <a class="btn btn-primary btn-sm" href="/home" role="button">Home</a>
 </div>

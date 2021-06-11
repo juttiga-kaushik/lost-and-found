@@ -4,8 +4,8 @@ const cloudinary = require("../cloudinary");
 const fs = require("fs");
 const itemModel = require("../models/itemModel");
 const userModel = require("../models/userModel");
-const itemHistorySchema = require("../models/itemHistoryModel");
 const itemHistoryModel = require("../models/itemHistoryModel");
+const itemStatusModel = require("../models/itemStatusModel");
 
 router.post("/lost", async (req,res) => {
     if(!req.session.userId) {
@@ -39,15 +39,7 @@ router.post("/lost", async (req,res) => {
             cloudinaryId: imagePublicId,
             university: university
         });
-        const newItemHistory = new itemHistoryModel({
-            userId: req.session.userId, 
-            itemName: itemName, 
-            itemDescription: itemDescription, 
-            itemReward: itemReward,
-            university: university
-        });
         await newItem.save();
-        await newItemHistory.save();
         res.redirect("/home");
     }
     catch(err) {
@@ -63,7 +55,8 @@ router.get("/:itemId", async (req,res) => {
     try {
         const item = await itemModel.findById(req.params.itemId);
         const user = await userModel.findById(item.userId);
-        res.render("itemInfo",{item:item,user:user});
+        const loggedInUserId = req.session.userId;
+        res.render("itemInfo",{item:item,user:user, loggedInUserId: loggedInUserId});
     }
     catch(err) {
         res.status(500).send("Error in fetching the data");
@@ -77,9 +70,17 @@ router.get("/delete/:itemId", async (req,res) => {
     }
     try {
         const item = await itemModel.findById(req.params.itemId);
+        const newItemHistory = new itemHistoryModel({
+            userId: req.session.userId,
+            itemId: req.params.itemId, 
+            itemName: item.itemName,
+            itemFoundBy: "None"
+        });
+        await newItemHistory.save();
         if(item.cloudinaryId != "none") {
             await cloudinary.uploader.destroy(item.cloudinaryId);
         }
+        await itemStatusModel.findOneAndRemove({ itemId: item.id });
         await item.remove();
         res.redirect("/home");
     }

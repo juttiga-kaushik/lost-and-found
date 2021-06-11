@@ -10,6 +10,8 @@ const usersRouter = require("./routes/usersRouter");
 const homeRouter = require("./routes/homeRouter");
 const itemsRouter = require("./routes/itemsRouter");
 const historyRouter = require("./routes/historyRouter");
+const itemStatusRouter = require("./routes/statusRouter");
+const messageRouter = require("./routes/messageRouter");
 
 const PORT = process.env.PORT || 80;
 
@@ -30,5 +32,7 @@ app.use("/users",usersRouter);
 app.use("/home",homeRouter);
 app.use("/items",itemsRouter);
 app.use("/history",historyRouter);
+app.use("/status",itemStatusRouter);
+app.use("/messages",messageRouter);
 
 app.listen(PORT, () => console.log("Server running on port 80"));
